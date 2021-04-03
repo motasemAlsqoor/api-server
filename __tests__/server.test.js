@@ -10,8 +10,9 @@ mongoose.connect(process.env.MONGODB_URI, {
 });
 const request = superTest(server);
 
-let id;
+
 describe('api server', () => {
+    let id;
     it('should be able to create a food on POST /food', async () => {
         const obj = {
             name: 'test',
