@@ -1,19 +1,22 @@
-'use strict';
-const express = require('express');
-const morgan = require('morgan');
-const cors = require('cors');
-const notFoundHndler = require('./error-handlers/404.js');
-const errorHandler = require('./error-handlers/500.js');
-const foodRouter = require('./routes/food.js');
-const clothesRouter = require('./routes/clothes.js');
+"use strict";
+const express = require("express");
+const morgan = require("morgan");
+const cors = require("cors");
+const notFoundHndler = require("./error-handlers/404.js");
+const errorHandler = require("./error-handlers/500.js");
+const foodRouter = require("./routes/food.js");
+const clothesRouter = require("./routes/clothes.js");
+const todoRouter = require("./routes/todo.js");
+
 const app = express();
 
 app.use(express.json());
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 app.use(cors());
-app.use('/api/v1', foodRouter);
-app.use('/api/v1', clothesRouter);
-app.use('*', notFoundHndler);
+// app.use("/api/v1", foodRouter);
+// app.use("/api/v1", clothesRouter);
+app.use("/api/v1", todoRouter);
+app.use("*", notFoundHndler);
 app.use(errorHandler);
 
 module.exports = {
